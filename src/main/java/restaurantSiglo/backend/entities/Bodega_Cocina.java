@@ -8,7 +8,7 @@ import javax.persistence.Id;
 @Entity
 public class Bodega_Cocina {
 
-    @ //Clase o entidad Producto
+    @ //Clase o entidad Producto       /Como resolver clase con claver foranea (FK) como PK
     private Producto producto;
 
     private String descripcion;

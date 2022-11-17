@@ -10,5 +10,5 @@ import javax.transaction.Transactional;
 @Repository
 @Transactional
 @EnableTransactionManagement
-public interface AlertaRepository extends JpaRepository<Alerta, String > {
+public interface AlertaRepository extends JpaRepository<Alerta, Integer> {
 }
