@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import restaurantSiglo.backend.entities.Tipo_Funcionario;
 
 @Repository
-public interface Tipo_FuncionarioRepository extends JpaRepository<Tipo_Funcionario, String> {
+public interface Tipo_FuncionarioRepository extends JpaRepository<Tipo_Funcionario, Integer> {
 }

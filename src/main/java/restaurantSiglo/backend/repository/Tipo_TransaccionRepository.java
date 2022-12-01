@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import restaurantSiglo.backend.entities.Tipo_Transaccion;
 
 @Repository
-public interface Tipo_TransaccionRepository extends JpaRepository<Tipo_Transaccion, String> {
+public interface Tipo_TransaccionRepository extends JpaRepository<Tipo_Transaccion, Integer> {
 }

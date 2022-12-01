@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import restaurantSiglo.backend.entities.Sector;
 
 @Repository
-public interface SectorRepository extends JpaRepository<Sector, String> {
+public interface SectorRepository extends JpaRepository<Sector, Integer> {
 }

@@ -8,6 +8,7 @@ public class Persona {
     //Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_persona", unique = true)
     private Integer id_persona;
     private String rut;
     private String nombre;
