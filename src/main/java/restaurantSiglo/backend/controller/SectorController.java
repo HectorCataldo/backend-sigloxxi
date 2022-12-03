@@ -76,6 +76,4 @@ public class SectorController {
         }
         return ResponseEntity.notFound().build();
     }
-
-
 }
