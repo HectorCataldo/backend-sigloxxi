@@ -12,21 +12,18 @@ public class Registro_Jornada {
     private Date fecha;      //QUE TIPO DE DATE PUEDE SER MEJOR PARA LOS SIGUIENTES CASOS¿?
     private Date hora_entrada;
     private Date hora_salida;
-    @ManyToOne
-    @JoinColumn(name = "funcionario_id_funcionario")
-    private Funcionario funcionario;
+
 
     //Constructores
 
     public Registro_Jornada() {
     }
 
-    public Registro_Jornada(Integer id_registro, Date fecha, Date hora_entrada, Date hora_salida, Funcionario funcionario) {
+    public Registro_Jornada(Integer id_registro, Date fecha, Date hora_entrada, Date hora_salida) {
         this.id_registro = id_registro;
         this.fecha = fecha;
         this.hora_entrada = hora_entrada;
         this.hora_salida = hora_salida;
-        this.funcionario = funcionario;
     }
     //Getters y Setters
 
@@ -63,11 +60,4 @@ public class Registro_Jornada {
         this.hora_salida = hora_salida;
     }
 
-    public Funcionario getFuncionario() {
-        return funcionario;
-    }
-
-    public void setFuncionario(Funcionario funcionario) {
-        this.funcionario = funcionario;
-    }
 }
