@@ -28,6 +28,7 @@ public class RegistroJornadaController {
         this.registro_jornadaRepository = registro_jornadaRepository;
     }
 
+    //Esta función sirve para comparar entre dos fechas
     public static boolean compareDates(String d1,String d2)
     {
         try{
@@ -73,7 +74,7 @@ public class RegistroJornadaController {
 
 
     //Esta función obtiene y muestra todos los registros de jornada de la base de datos
-    @GetMapping("/registros_jornadas")
+    @GetMapping("/registro_jornadas")
     public List<Registro_Jornada> findAll(){
         List<Registro_Jornada> registro_jornadas = registro_jornadaRepository.findAll();
         return registro_jornadas;
@@ -106,7 +107,7 @@ public class RegistroJornadaController {
         return ResponseEntity.notFound().build();
     }
 
-    //Esta función crea un registro de jornada en la base de datos
+    //Esta función crea un registro de jornada, procurando que las fechas y horas cumplan con estar actualizadas
     @PostMapping("/registro_jornadas")
     public ResponseEntity<Registro_Jornada> create(@RequestBody Registro_Jornada registro_jornada){
         LocalDateTime localDateTime = LocalDateTime.now();
@@ -128,6 +129,7 @@ public class RegistroJornadaController {
         return ResponseEntity.badRequest().build();
     }
 
+    //Esta función actualiza un registro de jornada, procurando que las fechas y horas cumplan con estar actualizadas
     @PutMapping("/registro_jornadas")
     public ResponseEntity<Registro_Jornada> update(@RequestBody Registro_Jornada registro_jornada){
         List<Registro_Jornada> registro_jornadas = registro_jornadaRepository.findAll();
