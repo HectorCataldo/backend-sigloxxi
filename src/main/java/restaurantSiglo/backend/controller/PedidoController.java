@@ -1,5 +1,6 @@
 package restaurantSiglo.backend.controller;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
 import org.springframework.data.relational.core.sql.In;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -80,11 +81,30 @@ public class PedidoController {
 
     //Esta función crea un pedido en base de datos
     @PostMapping("/pedidos")
-    public ResponseEntity<Pedido> create(@RequestBody Pedido pedido){
-        try {
+    public ResponseEntity<Pedido> create(Pedido pedido){
+
+            pedidoRepository.save(pedido);
+            return ResponseEntity.ok(pedido);
+            /*try {
             List<Mesa>mesas=mesaRepository.findAll();
             List<Receta>recetas = recetaRepository.findAll();
             if (pedido.getId_pedido() ==null){
+                if (pedido.getMesa())
+                for (int i=0;i<mesas.size();i++){
+                    Mesa mesa = mesas.get(i);
+                    if (mesa.getId_mesa() == pedido.getMesa().getId_mesa()){
+                        pedido.setMesa(mesa);
+                        for (int o=0;o<recetas.size();o++){
+                            Receta receta = recetas.get(o);
+                            if (receta.getId_receta() == id_receta){
+                                pedido.setReceta(receta);
+                                pedido.setEstado_pedido(1);
+                                Pedido pedido1= pedidoRepository.save(pedido);
+                                return ResponseEntity.ok(pedido1);
+                            }
+                        }
+                    }
+                }
                 for (int i =0;i<mesas.size();i++){
                     Mesa mesa = mesas.get(i);
                     if (mesa == pedido.getMesa()){
@@ -98,12 +118,12 @@ public class PedidoController {
                         }
                     }
                 }
-            }
+
         }
         catch (Exception e){
             e.getCause();
         }
-        return ResponseEntity.badRequest().build();
+        return ResponseEntity.badRequest().build();*/
     }
 
     //Esta función actualiza los datos de un pedido en base de datos
