@@ -12,17 +12,17 @@ public class Producto {
     private String descripcion;
     private Integer cantidad;
     @ManyToOne
-    @JoinColumn(name = "tipo_medida_id_tipo_medida")
+    @JoinColumn(name = "id_tipo_medida")
     private Tipo_Medida tipo_medida;
     @ManyToOne
-    @JoinColumn(name = "tipo_producto_id_tipo_producto")
+    @JoinColumn(name = "id_tipo_producto")
     private Tipo_Producto tipo_producto;
     @ManyToOne
-    @JoinColumn(name = "proveedor_id_proveedor")
+    @JoinColumn(name = "id_proveedor")
     private Proveedor proveedor;
     private Date fecha_vencimiento;
     @ManyToOne
-    @JoinColumn(name = "alerta_id_alerta")
+    @JoinColumn(name = "id_alerta")
     private Alerta alerta;
 
     // Constructores

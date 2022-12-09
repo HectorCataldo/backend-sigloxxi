@@ -89,16 +89,23 @@ public class PersonaController {
         //Esta función actualiza los datos de una persona en base de datos
     @PutMapping("/personas")
     public ResponseEntity<Persona> update(@RequestBody Persona persona){
+        try {
             List<Persona> personas = personaRepository.findAll();
-        for (int i = 0; i < personas.size(); i++){
-            Persona p1 = personas.get(i);
-            if (p1.getId_persona() == persona.getId_persona()){
-                Persona persona1 = personaRepository.save(persona);
-                return ResponseEntity.ok(persona1);
-            } else if (persona.getId_persona() == null) {
-                return ResponseEntity.badRequest().build();
+            for (int i = 0; i < personas.size(); i++){
+                Persona p1 = personas.get(i);
+                if (p1.getId_persona() == persona.getId_persona()){
+                    if (personas.get(i).getRut() != persona.getRut()){
+                        Persona persona1 = personaRepository.save(persona);
+                        return ResponseEntity.ok(persona1);
+                    }
+                } else if (persona.getId_persona() == null) {
+                    return ResponseEntity.badRequest().build();
+                }
             }
+        }catch (Exception e){
+            e.getCause();
         }
+
         return ResponseEntity.notFound().build();
     }
 

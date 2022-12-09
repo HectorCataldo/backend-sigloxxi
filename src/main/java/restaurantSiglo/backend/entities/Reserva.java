@@ -10,12 +10,12 @@ public class Reserva {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_reserva;
     @ManyToOne
-    @JoinColumn(name = "persona_id_persona")
+    @JoinColumn(name = "id_persona")
     private Persona persona;
     private Date fecha;
     private Date hora;
     @ManyToOne
-    @JoinColumn(name = "mesa_id_mesa")
+    @JoinColumn(name = "id_mesa")
     private Mesa mesa;
 
     //Constructores

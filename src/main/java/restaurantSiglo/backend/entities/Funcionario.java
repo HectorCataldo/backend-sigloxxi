@@ -10,15 +10,15 @@ public class Funcionario {
     private Integer id_funcionario;
 
     @ManyToOne
-    @JoinColumn(name = "persona_id_persona")
+    @JoinColumn(name = "id_persona")
     private Persona persona;
 
     @ManyToOne
-    @JoinColumn(name = "tipo_funcionario_id_tipo_funcionario")
+    @JoinColumn(name = "id_tipo_funcionario")
     private Tipo_Funcionario tipo_funcionario;
 
     @ManyToOne
-    @JoinColumn(name = "id_registro_jornada")
+    @JoinColumn(name = "id_registro")
     private Registro_Jornada registro_jornada;
 
 

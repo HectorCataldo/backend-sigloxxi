@@ -10,24 +10,27 @@ public class Transaccion {
     private Integer id_transaccion;
     private Integer valor;
     private Integer cantidad;
+
     @ManyToOne
-    @JoinColumn(name = "producto_id_producto")
-    private Producto producto;
-    @ManyToOne
-    @JoinColumn(name = "tipo_transaccion_id_tipo_transaccion")
+    @JoinColumn(name = "id_tipo_transaccion")
     private Tipo_Transaccion tipo_transaccion;
+    @ManyToOne
+    @JoinColumn(name = "pedido_id_pedido")
+    private Pedido pedido;
+
+
 
     //Constructores
 
     public Transaccion() {
     }
 
-    public Transaccion(Integer id_transaccion, Integer valor, Integer cantidad, Producto producto, Tipo_Transaccion tipo_transaccion) {
+    public Transaccion(Integer id_transaccion, Integer valor, Integer cantidad, Tipo_Transaccion tipo_transaccion,Pedido pedido) {
         this.id_transaccion = id_transaccion;
         this.valor = valor;
         this.cantidad = cantidad;
-        this.producto = producto;
         this.tipo_transaccion = tipo_transaccion;
+        this.pedido = pedido;
     }
     //Getters y Setters
 
@@ -63,11 +66,11 @@ public class Transaccion {
         this.tipo_transaccion = tipo_transaccion;
     }
 
-    public Producto getProducto() {
-        return producto;
+    public Pedido getPedido() {
+        return pedido;
     }
 
-    public void setProducto(Producto producto) {
-        this.producto = producto;
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
     }
 }

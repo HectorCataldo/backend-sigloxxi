@@ -9,7 +9,7 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_usuario;
     @ManyToOne
-    @JoinColumn(name = "funcionario_id_funcionario")
+    @JoinColumn(name = "id_funcionario")
     private Funcionario funcionario;
     private String contrasena;
 

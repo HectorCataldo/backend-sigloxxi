@@ -11,30 +11,28 @@ public class Documento_Venta {
     private Integer id_documento_venta;
     private Date fecha;
     @ManyToOne
-    @JoinColumn(name = "pedido_id_pedido")
+    @JoinColumn(name = "id_pedido")
     private Pedido pedido;
     @ManyToOne
-    @JoinColumn(name = "producto_id_producto")
+    @JoinColumn(name = "id_producto")
     private Producto producto;
     private Integer cantidad;
     @ManyToOne
-    @JoinColumn(name = "tipo_receta_id_tipo_receta")
-    private Tipo_Receta tipo_receta;
+    @JoinColumn(name = "tipo_transaccion")
+    private Tipo_Transaccion tipo_transaccion;
     private Integer valor_total;
 
     //Constructores
-
-
     public Documento_Venta() {
     }
 
-    public Documento_Venta(Integer id_documento_venta, Date fecha, Pedido pedido, Producto producto, Integer cantidad, Tipo_Receta tipo_receta, Integer valor_total) {
+    public Documento_Venta(Integer id_documento_venta, Date fecha, Pedido pedido, Producto producto, Integer cantidad, Tipo_Transaccion tipo_transaccion, Integer valor_total) {
         this.id_documento_venta = id_documento_venta;
         this.fecha = fecha;
         this.pedido = pedido;
         this.producto = producto;
         this.cantidad = cantidad;
-        this.tipo_receta = tipo_receta;
+        this.tipo_transaccion = tipo_transaccion;
         this.valor_total = valor_total;
     }
 
@@ -72,12 +70,12 @@ public class Documento_Venta {
         this.valor_total = valor_total;
     }
 
-    public Tipo_Receta getTipo_receta() {
-        return tipo_receta;
+    public Tipo_Transaccion getTipo_transaccion() {
+        return tipo_transaccion;
     }
 
-    public void setTipo_receta(Tipo_Receta tipo_receta) {
-        this.tipo_receta = tipo_receta;
+    public void setTipo_transaccion(Tipo_Transaccion tipo_transaccion) {
+        this.tipo_transaccion = tipo_transaccion;
     }
 
     public Producto getProducto() {

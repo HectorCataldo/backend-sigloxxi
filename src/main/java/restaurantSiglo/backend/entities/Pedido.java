@@ -9,10 +9,10 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_pedido;
     @ManyToOne
-    @JoinColumn(name = "mesa_id_mesa")
+    @JoinColumn(name = "id_mesa")
     private Mesa mesa;
     @ManyToOne
-    @JoinColumn(name = "receta_id_receta")
+    @JoinColumn(name = "id_receta")
     private Receta receta;
     private String descripcion;
 

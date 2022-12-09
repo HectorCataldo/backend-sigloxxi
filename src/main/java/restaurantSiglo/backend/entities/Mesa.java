@@ -11,11 +11,11 @@ public class Mesa {
     private boolean estado;
     private Integer capacidad;
     @ManyToOne
-    @JoinColumn(name = "sector_id_sector")
+    @JoinColumn(name = "id_sector")
     private Sector sector;
     private Integer grupo;
     @ManyToOne
-    @JoinColumn(name = "funcionario_id_funcionario")
+    @JoinColumn(name = "id_trabajador")
     private Funcionario funcionario;
 
     //Constructores

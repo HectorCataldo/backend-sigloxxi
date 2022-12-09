@@ -1,29 +1,75 @@
-/*package restaurantSiglo.backend.entities;
+package restaurantSiglo.backend.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Bodega_Cocina {
 
-    @ //Clase o entidad Producto       /Como resolver clase con claver foranea (FK) como PK
+    //Atributos
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id_producto_bodega;
+    private String descripcion;
+    private Integer cantidad;
+    @ManyToOne
+    @JoinColumn(name = "id_alerta")
+    private Alerta alerta;
+    @ManyToOne
+    @JoinColumn(name = "id_producto")
     private Producto producto;
 
-    private String descripcion;
+    //Constructores
 
-    private Integer Cantidad;
+    public Bodega_Cocina() {
+    }
 
-    @ //Clase o entidad Tipo_Medida
-    private Tipo_Medida tipo_medida;
+    public Bodega_Cocina(Integer id_producto_bodega, String descripcion, Integer cantidad, Alerta alerta, Producto producto) {
+        this.id_producto_bodega = id_producto_bodega;
+        this.descripcion = descripcion;
+        this.cantidad = cantidad;
+        this.alerta = alerta;
+        this.producto = producto;
+    }
 
-    @ //Clase o entidad Tipo_Producto
-    private Tipo_Producto tipo_producto;
+    //Getter y setters
 
-    private Date Fecha Vencimiento;
+    public Integer getId_producto_bodega() {
+        return id_producto_bodega;
+    }
 
-    @ //Clase o entidad Alerta
-    private Alerta alerta;
+    public void setId_producto_bodega(Integer id_producto_bodega) {
+        this.id_producto_bodega = id_producto_bodega;
+    }
 
-}*/
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public Integer getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(Integer cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }
+
+    public Alerta getAlerta() {
+        return alerta;
+    }
+
+    public void setAlerta(Alerta alerta) {
+        this.alerta = alerta;
+    }
+}

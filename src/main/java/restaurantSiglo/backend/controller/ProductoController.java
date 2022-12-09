@@ -190,7 +190,7 @@ public class ProductoController {
                     String formatDateTime = localDateTime.format(formatter);
                     Date fechaV= producto.getFecha_vencimiento();
                     LocalDateTime ldt = LocalDateTime.ofInstant(fechaV.toInstant(), ZoneId.systemDefault());
-                    if (!producto.getDescripcion().isBlank() && producto.getCantidad() >=1 && compareDates(ldt.format(formatter),formatDateTime)){
+                    if (!producto.getDescripcion().isBlank() && compareDates(ldt.format(formatter),formatDateTime)){
                         for (int i = 0; i<tipo_medidas.size();i++){
                             Tipo_Medida tipo_medida = tipo_medidas.get(i);
                             if (tipo_medida == producto.getTipo_medida()){
@@ -222,4 +222,6 @@ public class ProductoController {
         }
         return ResponseEntity.notFound().build();
     }
+
+
 }
