@@ -2,9 +2,11 @@ package restaurantSiglo.backend.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import restaurantSiglo.backend.entities.Bodega_Cocina;
 import restaurantSiglo.backend.entities.Producto;
 import restaurantSiglo.backend.entities.Receta;
 import restaurantSiglo.backend.entities.Tipo_Receta;
+import restaurantSiglo.backend.repository.BodegaCocinaRepository;
 import restaurantSiglo.backend.repository.ProductoRepository;
 import restaurantSiglo.backend.repository.RecetaRepository;
 import restaurantSiglo.backend.repository.Tipo_RecetaRepository;
@@ -17,14 +19,14 @@ public class RecetaController {
 
     //Obtenemos los repositorios
     private RecetaRepository recetaRepository;
-    private ProductoRepository productoRepository;
     private Tipo_RecetaRepository tipo_recetaRepository;
+    private BodegaCocinaRepository bodegaCocinaRepository;
 
     //Creamos el constructor
-    public RecetaController(RecetaRepository recetaRepository, ProductoRepository productoRepository, Tipo_RecetaRepository tipo_recetaRepository) {
+    public RecetaController(RecetaRepository recetaRepository, Tipo_RecetaRepository tipo_recetaRepository, BodegaCocinaRepository bodegaCocinaRepository) {
         this.recetaRepository = recetaRepository;
-        this.productoRepository = productoRepository;
         this.tipo_recetaRepository = tipo_recetaRepository;
+        this.bodegaCocinaRepository = bodegaCocinaRepository;
     }
 
     //Esta función busca y trae a todas las recetas de la base de datos
@@ -81,13 +83,13 @@ public class RecetaController {
     @PostMapping("/recetas")
     public ResponseEntity<Receta> create(@RequestBody Receta receta){
         try {
-            List<Producto> productos = productoRepository.findAll();
+            List<Bodega_Cocina> bodega_cocinas = bodegaCocinaRepository.findAll();
             List<Tipo_Receta> tipo_recetas = tipo_recetaRepository.findAll();
             if (receta.getId_receta()==null){
                 if (!receta.getDescripcion().isBlank() && receta.getCantidad() >= 1){
-                    for (int i =0; i<productos.size();i++){
-                        Producto producto = productos.get(i);
-                        if (producto == receta.getProducto()){
+                    for (int i =0; i<bodega_cocinas.size();i++){
+                        Bodega_Cocina bodega_cocina = bodega_cocinas.get(i);
+                        if (bodega_cocina == receta.getBodega_cocina()){
                             for (int o = 0; o<tipo_recetas.size();o++){
                                 Tipo_Receta tipo_receta = tipo_recetas.get(o);
                                 if (tipo_receta == receta.getTipo_receta()){
@@ -111,15 +113,15 @@ public class RecetaController {
     public ResponseEntity<Receta> update(@RequestBody Receta receta){
         try {
             List<Receta> recetas = recetaRepository.findAll();
-            List<Producto> productos = productoRepository.findAll();
+            List<Bodega_Cocina>bodega_cocinas = bodegaCocinaRepository.findAll();
             List<Tipo_Receta> tipo_recetas = tipo_recetaRepository.findAll();
             for (int re =  0; re<recetas.size();re++){
                 Receta receta1 = recetas.get(re);
                 if (receta1.getId_receta() == receta.getId_receta()){
                     if (!receta.getDescripcion().isBlank() && receta.getCantidad() >= 1){
-                        for (int i =0; i<productos.size();i++){
-                            Producto producto = productos.get(i);
-                            if (producto == receta.getProducto()){
+                        for (int i =0; i<bodega_cocinas.size();i++){
+                            Bodega_Cocina bodega_cocina = bodega_cocinas.get(i);
+                            if (bodega_cocina == receta.getBodega_cocina()){
                                 for (int o = 0; o<tipo_recetas.size();o++){
                                     Tipo_Receta tipo_receta = tipo_recetas.get(o);
                                     if (tipo_receta == receta.getTipo_receta()){
@@ -145,10 +147,9 @@ public class RecetaController {
         try {
             List<Receta> recetas = recetaRepository.findAll();
             List<Receta> recetasD = new ArrayList<>();
-            List<Producto> productos = productoRepository.findAll();
             for (int i =0; i< recetas.size();i++){
                 Receta receta = recetas.get(i);
-                if (receta.getProducto().getCantidad() >= receta.getCantidad()){
+                if (receta.getBodega_cocina().getCantidad() >= receta.getCantidad()){
                     recetasD.add(receta);
                 }
             }

@@ -12,27 +12,32 @@ public class Receta {
     private String descripcion;
     private Integer cantidad;
     @ManyToOne
-    @JoinColumn(name = "producto_id_producto")
-    private Producto producto;
-    @ManyToOne
-    @JoinColumn(name = "tipo_receta_id_tipo_receta")
+    @JoinColumn(name = "id_tipo_receta")
     private Tipo_Receta tipo_receta;
-
-    //private Bodega_Cocina bodega_cocina_id_prodcuto;
+    private String imagen;
+    private String nombre;
+    private Integer precio;
+    @ManyToOne
+    @JoinColumn(name = "id_producto_bodega")
+    private Bodega_Cocina bodega_cocina;
 
     //Constructores
 
     public Receta() {
     }
 
-    public Receta(Integer id_receta, String descripcion, Integer cantidad, Producto producto, Tipo_Receta tipo_receta) {
+    public Receta(Integer id_receta, String descripcion, Integer cantidad, Tipo_Receta tipo_receta, String imagen, String nombre, Integer precio, Bodega_Cocina bodega_cocina) {
         this.id_receta = id_receta;
         this.descripcion = descripcion;
         this.cantidad = cantidad;
-        this.producto = producto;
         this.tipo_receta = tipo_receta;
+        this.imagen = imagen;
+        this.nombre = nombre;
+        this.precio = precio;
+        this.bodega_cocina = bodega_cocina;
     }
-    //Getters y Setters
+
+    //Getters y setters
 
 
     public Integer getId_receta() {
@@ -59,19 +64,43 @@ public class Receta {
         this.cantidad = cantidad;
     }
 
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Integer getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(Integer precio) {
+        this.precio = precio;
+    }
+
+    public Bodega_Cocina getBodega_cocina() {
+        return bodega_cocina;
+    }
+
+    public void setBodega_cocina(Bodega_Cocina bodega_cocina) {
+        this.bodega_cocina = bodega_cocina;
+    }
+
     public Tipo_Receta getTipo_receta() {
         return tipo_receta;
     }
 
     public void setTipo_receta(Tipo_Receta tipo_receta) {
         this.tipo_receta = tipo_receta;
-    }
-
-    public Producto getProducto() {
-        return producto;
-    }
-
-    public void setProducto(Producto producto) {
-        this.producto = producto;
     }
 }
