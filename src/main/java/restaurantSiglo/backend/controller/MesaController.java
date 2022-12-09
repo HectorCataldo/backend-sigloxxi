@@ -145,6 +145,7 @@ public class MesaController {
             for (int i =0; i<mesas.size();i++){
                 Mesa mesa = mesas.get(i);
                 if (mesa.isEstado()){
+
                     mesasD.add(mesa);
                 }
             }
@@ -153,6 +154,25 @@ public class MesaController {
 
         }
         catch (Exception e){
+            e.getCause();
+        }
+        return null;
+    }
+
+    @GetMapping("/mesas/funcionario/{id}")
+    public List<Mesa> findByFuncionario(@PathVariable Integer id){
+        try {
+            List<Mesa> mesas = mesaRepository.findAll();
+            List<Mesa> mesasD= new ArrayList<>();
+            for (int i =0; i<mesas.size();i++){
+                Mesa mesa =mesas.get(i);
+                if (mesa.getFuncionario().getId_funcionario()==id){
+                    mesasD.add(mesa);
+                }
+            }
+            return mesasD;
+
+            }catch (Exception e){
             e.getCause();
         }
         return null;

@@ -153,7 +153,7 @@ public class UsuarioController {
 
     //Esta función valida las credenciales de un usuario con correo y contraseña correctas guardados en Base de datos
     @PostMapping("/login")
-    public ResponseEntity<Usuario> validarUsuario(String correo, String contrasena){
+    public ResponseEntity<Usuario> validarUsuario(@RequestParam("correo") String correo, @RequestParam("contrasena") String contrasena){
         try {
             List<Usuario>usuarios =usuarioRepository.findAll();
             for (int i=0; i<usuarios.size();i++){

@@ -16,18 +16,29 @@ public class Pedido {
     private Receta receta;
     private String descripcion;
 
+    private Integer estado_pedido = 1;
+
     //Constructores
 
     public Pedido() {
     }
 
-    public Pedido(Integer id_pedido, Mesa mesa, Receta receta, String descripcion) {
+    public Pedido(Integer id_pedido, Mesa mesa, Receta receta, String descripcion, Integer estado_pedido) {
         this.id_pedido = id_pedido;
         this.mesa = mesa;
         this.receta = receta;
         this.descripcion = descripcion;
+        this.estado_pedido = estado_pedido;
     }
-    //Getters y Setters
+//Getters y Setters
+
+    public Integer getEstado_pedido() {
+        return estado_pedido;
+    }
+
+    public void setEstado_pedido(Integer estado_pedido) {
+        this.estado_pedido = estado_pedido;
+    }
 
     public Integer getId_pedido() {
         return id_pedido;

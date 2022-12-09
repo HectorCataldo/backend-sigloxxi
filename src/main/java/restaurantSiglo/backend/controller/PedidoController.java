@@ -91,6 +91,7 @@ public class PedidoController {
                         for (int o=0;o<recetas.size();o++){
                             Receta receta= recetas.get(o);
                             if (receta == pedido.getReceta()){
+                                pedido.setEstado_pedido(1);
                                 Pedido pedido1 = pedidoRepository.save(pedido);
                                 return ResponseEntity.ok(pedido1);
                             }
@@ -121,8 +122,11 @@ public class PedidoController {
                             for (int u =0;u<recetas.size();u++){
                                 Receta receta = recetas.get(u);
                                 if (receta == pedido.getReceta()){
-                                    Pedido pedido2 = pedidoRepository.save(pedido);
-                                    return ResponseEntity.ok(pedido2);
+                                    Integer estado = pedido.getEstado_pedido();
+                                    if (estado >=1 && estado <=3){
+                                        Pedido pedido2 = pedidoRepository.save(pedido);
+                                        return ResponseEntity.ok(pedido2);
+                                    }
                                 }
                             }
                         }
@@ -154,4 +158,27 @@ public class PedidoController {
         }
         return null;
     }
+
+    //Esta función cambia el estado de un pedido
+    @PostMapping("/pedido")
+    public boolean cambiarEstado(@RequestParam("id_pedido")Integer id_pedido,@RequestParam("estado") Integer estado_pedido){
+        try {
+            List<Pedido> pedidos = pedidoRepository.findAll();
+            for (int i=0; i<pedidos.size();i++){
+                Pedido pedido = pedidos.get(i);
+                if (pedido.getId_pedido() == id_pedido){
+                    pedido.setEstado_pedido(estado_pedido);
+                    pedidoRepository.save(pedido);
+                    return true;
+                }
+
+
+            }
+        }
+        catch (Exception e){
+            e.getCause();
+        }
+        return false;
+    }
+
 }
