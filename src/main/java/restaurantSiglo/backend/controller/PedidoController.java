@@ -81,49 +81,40 @@ public class PedidoController {
 
     //Esta función crea un pedido en base de datos
     @PostMapping("/pedidos")
-    public ResponseEntity<Pedido> create(Pedido pedido){
-
-            pedidoRepository.save(pedido);
-            return ResponseEntity.ok(pedido);
-            /*try {
-            List<Mesa>mesas=mesaRepository.findAll();
-            List<Receta>recetas = recetaRepository.findAll();
-            if (pedido.getId_pedido() ==null){
-                if (pedido.getMesa())
-                for (int i=0;i<mesas.size();i++){
-                    Mesa mesa = mesas.get(i);
-                    if (mesa.getId_mesa() == pedido.getMesa().getId_mesa()){
-                        pedido.setMesa(mesa);
-                        for (int o=0;o<recetas.size();o++){
-                            Receta receta = recetas.get(o);
-                            if (receta.getId_receta() == id_receta){
-                                pedido.setReceta(receta);
-                                pedido.setEstado_pedido(1);
-                                Pedido pedido1= pedidoRepository.save(pedido);
-                                return ResponseEntity.ok(pedido1);
-                            }
-                        }
-                    }
-                }
-                for (int i =0;i<mesas.size();i++){
-                    Mesa mesa = mesas.get(i);
-                    if (mesa == pedido.getMesa()){
-                        for (int o=0;o<recetas.size();o++){
-                            Receta receta= recetas.get(o);
-                            if (receta == pedido.getReceta()){
-                                pedido.setEstado_pedido(1);
-                                Pedido pedido1 = pedidoRepository.save(pedido);
-                                return ResponseEntity.ok(pedido1);
-                            }
-                        }
+    public ResponseEntity<Pedido> create(@RequestParam("id_mesa") Integer id_mesa,@RequestParam("id_receta")Integer id_receta,@RequestParam("descripcion")String descripcion,@RequestParam("estado_pedido")Integer estado_pedido){
+        List<Mesa> mesas = mesaRepository.findAll();
+        List<Receta> recetas=recetaRepository.findAll();
+        for (int i=0;i<mesas.size();i++){
+            Mesa mesa = mesas.get(i);
+            if (mesa.getId_mesa()==id_mesa){
+                Mesa mesaD = new Mesa();
+                mesaD.setId_mesa(mesa.getId_mesa());
+                mesaD.setCapacidad(mesa.getCapacidad());
+                mesaD.setFuncionario(mesa.getFuncionario());
+                mesaD.setEstado(mesa.isEstado());
+                mesaD.setGrupo(mesa.getGrupo());
+                mesaD.setSector(mesa.getSector());
+                for (int o=0;o<recetas.size();o++){
+                    Receta receta = recetas.get(o);
+                    if (receta.getId_receta() == id_receta){
+                        Receta recetaD= new Receta();
+                        recetaD.setId_receta(receta.getId_receta());
+                        recetaD.setDescripcion(receta.getDescripcion());
+                        recetaD.setCantidad(receta.getCantidad());
+                        recetaD.setTipo_receta(receta.getTipo_receta());
+                        recetaD.setImagen(receta.getImagen());
+                        recetaD.setNombre(receta.getNombre());
+                        recetaD.setPrecio(receta.getPrecio());
+                        recetaD.setBodega_cocina(receta.getBodega_cocina());
+                        Pedido pedido1 = new Pedido(null,mesaD,recetaD,descripcion,estado_pedido);
+                        Pedido ped = pedidoRepository.save(pedido1);
+                        return ResponseEntity.ok(ped);
                     }
                 }
 
+            }
         }
-        catch (Exception e){
-            e.getCause();
-        }
-        return ResponseEntity.badRequest().build();*/
+        return ResponseEntity.badRequest().build();
     }
 
     //Esta función actualiza los datos de un pedido en base de datos
